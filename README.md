@@ -1,6 +1,6 @@
 # Проект: Место
 
-ДЕМО - https://jetmod.github.io/mesto
+ДЕМО - https://jetmod.github.io/mesto-react/
 
 ## 10 спринт
 
