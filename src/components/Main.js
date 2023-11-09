@@ -72,18 +72,17 @@ function Main(props) {
       </section>
 
       <section className="cards" aria-label="фото">
-        <ul className="cards">
-          {cards.map((cardData, card) => {
-            return (
-              <Card
-                key={card._id}
-                userId={userId}
-                onCardClick={props.onCardClick}
-                {...cardData}
-              />
-            );
-          })}
-        </ul>
+        {cards.map((card) => {
+          return (
+            <Card
+              key={card._id}
+              card={card.card}
+              userId={userId}
+              onCardClick={props.onCardClick}
+              {...card}
+            />
+          );
+        })}
       </section>
     </main>
   );
