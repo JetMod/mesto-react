@@ -28,8 +28,8 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
 
-  function handleCardClick(cardData) {
-    setSelectedCard(cardData);
+  function handleCardClick(card) {
+    setSelectedCard(card);
   }
 
   function closeAllPopups() {
