@@ -2,8 +2,8 @@ import React from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
-import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
+import PopupWithForm from "./PopupWithForm";
 import "../index.css";
 
 function App() {
@@ -13,14 +13,15 @@ function App() {
     React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isConfirmPopupOpen, setIsConfirmPopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState({});
 
-  function handleEditAvatarClick() {
-    setIsEditAvatarPopupOpen(true);
-  }
+  const [selectedCard, setSelectedCard] = React.useState({});
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
+  }
+
+  function handleEditAvatarClick() {
+    setIsEditAvatarPopupOpen(true);
   }
 
   function handleAddPlaceClick() {
@@ -44,33 +45,12 @@ function App() {
         <Header />
 
         <Main
-          onEditAvatar={handleEditAvatarClick}
           onEditProfile={handleEditProfileClick}
+          onEditAvatar={handleEditAvatarClick}
           onAddPlace={handleAddPlaceClick}
           onCardClick={handleCardClick}
         />
-
         <Footer />
-
-        <PopupWithForm
-          title="Обновить аватар"
-          name="avatar"
-          onClose={closeAllPopups}
-          isOpen={isEditAvatarPopupOpen}
-        >
-          <input
-            id="avatar-link-input"
-            className="popup__input popup__input_type_link"
-            type="url"
-            name="avatar"
-            placeholder="Ссылка на аватар"
-            required
-          />
-          <span className="popup__input-error avatar-link-input-error"></span>
-          <button className="popup__submit link" type="submit">
-            Сохранить
-          </button>
-        </PopupWithForm>
 
         <PopupWithForm
           title="Редактировать профиль"
@@ -100,6 +80,26 @@ function App() {
             required
           />
           <span className="popup__input-error work-input-error"></span>
+          <button className="popup__submit link" type="submit">
+            Сохранить
+          </button>
+        </PopupWithForm>
+
+        <PopupWithForm
+          title="Обновить аватар"
+          name="avatar"
+          onClose={closeAllPopups}
+          isOpen={isEditAvatarPopupOpen}
+        >
+          <input
+            id="avatar-link-input"
+            className="popup__input popup__input_type_link"
+            type="url"
+            name="avatar"
+            placeholder="Ссылка на аватар"
+            required
+          />
+          <span className="popup__input-error avatar-link-input-error"></span>
           <button className="popup__submit link" type="submit">
             Сохранить
           </button>
@@ -149,7 +149,6 @@ function App() {
             Да
           </button>
         </PopupWithForm>
-
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       </div>
     </body>

@@ -12,8 +12,8 @@ class Api {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  getUserInfo() {
-    return fetch(`${this._url}/users/me`, {
+  getInitialCards() {
+    return fetch(`${this._url}/cards`, {
       headers: {
         authorization: this._name,
       },
@@ -22,8 +22,8 @@ class Api {
     });
   }
 
-  getInitialCards() {
-    return fetch(`${this._url}/cards`, {
+  getUserInfo() {
+    return fetch(`${this._url}/users/me`, {
       headers: {
         authorization: this._name,
       },

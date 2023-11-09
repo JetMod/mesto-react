@@ -1,23 +1,20 @@
 import React from "react";
 import api from "../utils/api";
 import Card from "./Card";
-import blackBackgroundPath from "../images/avatar.png";
+import avatar from "../images/avatar.png";
 
 function Main(props) {
   const [userName, setUserName] = React.useState("...");
   const [userDescription, setUserDescription] = React.useState("");
-  const [userAvatar, setUserAvatar] = React.useState(blackBackgroundPath);
+  const [userAvatar, setUserAvatar] = React.useState(avatar);
   const [userId, setUserId] = React.useState("");
   const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
     api
-      .getUserInfo()
+      .getInitialCards()
       .then((data) => {
-        setUserName(data.name);
-        setUserDescription(data.about);
-        setUserAvatar(data.avatar);
-        setUserId(data.userId);
+        setCards(data);
       })
       .catch((err) => {
         console.log(`Ошибка: ${err.status}`);
@@ -26,9 +23,12 @@ function Main(props) {
 
   React.useEffect(() => {
     api
-      .getInitialCards()
+      .getUserInfo()
       .then((data) => {
-        setCards(data);
+        setUserAvatar(data.avatar);
+        setUserId(data.userId);
+        setUserName(data.name);
+        setUserDescription(data.about);
       })
       .catch((err) => {
         console.log(`Ошибка: ${err.status}`);
@@ -52,7 +52,7 @@ function Main(props) {
                 type="button"
                 className="profile__create link"
                 name="create-button"
-                onClick={props.onEditAvatar}
+                onClick={props.onEditProfile}
               ></button>
             </div>
             <p className="profile__work">{userDescription}</p>
@@ -61,7 +61,7 @@ function Main(props) {
             type="button"
             className="profile__avatar-create link"
             name="avatar-edit-button"
-            onClick={props.onEditProfile}
+            onClick={props.onEditAvatar}
           ></button>
         </div>
         <button
