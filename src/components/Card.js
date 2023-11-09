@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 function Card(props) {
   function handleCardClick() {
@@ -7,8 +7,17 @@ function Card(props) {
 
   return (
     <li className="cards__card">
-      <img className="cards__img link" src={props.link} alt="Изображение из карточки" onClick={handleCardClick} />
-      {(props.userId === props.owner._id) ? (<button className="cards__basket link" type="button"></button>) : ''}
+      <img
+        className="cards__img link"
+        src={props.link}
+        alt={props.name}
+        onClick={handleCardClick}
+      />
+      {props.userId === props.owner._id ? (
+        <button className="cards__basket link" type="button"></button>
+      ) : (
+        ""
+      )}
       <div className="cards__container">
         <h2 className="cards__title">{props.name}</h2>
         <div className="cards__like-container">

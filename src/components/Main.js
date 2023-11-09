@@ -73,10 +73,10 @@ function Main(props) {
 
       <section className="cards" aria-label="фото">
         <ul className="cards">
-          {cards.map((cardData, index) => {
+          {cards.map((cardData, card) => {
             return (
               <Card
-                key={index}
+                key={card._id}
                 userId={userId}
                 onCardClick={props.onCardClick}
                 {...cardData}
