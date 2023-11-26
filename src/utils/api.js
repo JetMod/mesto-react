@@ -12,8 +12,8 @@ class Api {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  getInitialCards() {
-    return fetch(`${this._url}/cards`, {
+  getUserInfo() {
+    return fetch(`${this._url}/users/me`, {
       headers: {
         authorization: this._name,
       },
@@ -22,8 +22,8 @@ class Api {
     });
   }
 
-  getUserInfo() {
-    return fetch(`${this._url}/users/me`, {
+  getInitialCards() {
+    return fetch(`${this._url}/cards`, {
       headers: {
         authorization: this._name,
       },
@@ -36,7 +36,7 @@ class Api {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: {
-        authorization: this._name,
+        authorization: this._token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -90,20 +90,9 @@ class Api {
     });
   }
 
-  setLikeCard(cardId) {
+  changeLikeCardStatus(cardId, isLiked) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
-      method: "PUT",
-      headers: {
-        authorization: this._name,
-      },
-    }).then((res) => {
-      return this._checkResponse(res);
-    });
-  }
-
-  deleteLikeCard(cardId) {
-    return fetch(`${this._url}/cards/${cardId}/likes`, {
-      method: "DELETE",
+      method: isLiked ? "PUT" : "DELETE",
       headers: {
         authorization: this._name,
       },

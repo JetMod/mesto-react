@@ -1,28 +1,48 @@
 import React from "react";
-
-function Card(props) {
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
+function Card(card) {
   function handleCardClick() {
-    props.onCardClick(props);
+    card.onCardClick(card);
   }
+  function handleLikeClick() {
+    card.onCardLike(card);
+  }
+  function handleDeleteClick() {
+    card.onCardDelete(card);
+  }
+  const currentUser = React.useContext(CurrentUserContext);
+  // Определяем, являемся ли мы владельцем текущей карточки
+  const isOwn = card.owner._id === currentUser._id;
+  const isLiked = card.likes.some((user) => user._id === currentUser._id);
 
   return (
     <li className="cards__card">
       <img
         className="cards__img link"
-        src={props.link}
-        alt={props.name}
+        src={card.link}
+        alt="Изображение из карточки"
         onClick={handleCardClick}
       />
-      {props.userId === props.owner._id ? (
-        <button className="cards__basket link" type="button"></button>
+      {isOwn ? (
+        <button
+          className="cards__basket link"
+          type="button"
+          onClick={handleDeleteClick}
+        ></button>
       ) : (
         ""
       )}
       <div className="cards__container">
-        <h2 className="cards__title">{props.name}</h2>
+        <h2 className="cards__title">{card.name}</h2>
         <div className="cards__like-container">
-          <button className="cards__like-icon link" type="button"></button>
-          <span className="cards__like-counter">{props.likes.length}</span>
+          <button
+            className={`cards__like-icon link ${
+              isLiked ? `cards__like-icon_active` : ``
+            }`}
+            type="button"
+            onClick={handleLikeClick}
+          ></button>
+          <span className="cards__like-counter">{card.likes.length}</span>
         </div>
       </div>
     </li>
