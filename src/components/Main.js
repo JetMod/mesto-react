@@ -21,19 +21,19 @@ function Main(props) {
             <div className="profile__name-container">
               <h1 className="profile__name">{currentUser.name}</h1>
               <button
-                className="profile__avatar-create link"
-                name="avatar-edit-button"
-                onClick={props.onEditAvatar}
                 type="button"
+                className="profile__create link"
+                name="create-button"
+                onClick={props.onEditProfile}
               ></button>
             </div>
             <p className="profile__work">{currentUser.about}</p>
           </div>
           <button
+            className="profile__avatar-create link"
+            name="avatar-edit-button"
+            onClick={props.onEditAvatar}
             type="button"
-            className="profile__create link"
-            name="create-button"
-            onClick={props.onEditProfile}
           ></button>
         </div>
         <button

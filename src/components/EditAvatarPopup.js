@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
@@ -11,6 +12,12 @@ function EditAvatarPopup(props) {
       avatar: avatarLink.current.value,
     });
   }
+
+  /**инициализация инпутов*/
+
+  useEffect(() => {
+    avatarLink.current.value = "";
+  }, [props.isOpen]);
 
   return (
     <PopupWithForm
