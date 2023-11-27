@@ -44,14 +44,14 @@ function Main(props) {
       </section>
 
       <section className="cards" aria-label="фото">
-        {props.cards.map((cardData) => {
+        {props.cards.map((card) => {
           return (
             <Card
-              key={cardData._id}
+              onCardDelete={props.onCardDelete}
+              key={card._id}
               onCardClick={props.onCardClick}
               onCardLike={props.onCardLike}
-              onCardDelete={props.onCardDelete}
-              {...cardData}
+              card={card}
             />
           );
         })}

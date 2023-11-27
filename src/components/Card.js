@@ -1,20 +1,21 @@
 import React from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-function Card(card) {
-  function handleCardClick() {
-    card.onCardClick(card);
-  }
-  function handleLikeClick() {
-    card.onCardLike(card);
-  }
-  function handleDeleteClick() {
-    card.onCardDelete(card);
-  }
-  const currentUser = React.useContext(CurrentUserContext);
-  // Определяем, являемся ли мы владельцем текущей карточки
-  const isOwn = card.owner._id === currentUser._id;
-  const isLiked = card.likes.some((user) => user._id === currentUser._id);
 
+function Card({ card, onCardClick, onCardLike, onCardDelete }) {
+  const handleCardClick = () => {
+    onCardClick(card);
+  };
+  const handleLikeClick = () => {
+    onCardLike(card);
+  };
+  const handleDeleteClick = () => {
+    onCardDelete(card);
+  };
+
+  const currentUser = React.useContext(CurrentUserContext);
+  const isOwn = card.owner._id === currentUser._id;
+  const isLiked = card.likes.some((i) => i._id === currentUser._id);
+  //console.log(card);
   return (
     <li className="cards__card">
       <img

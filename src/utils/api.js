@@ -36,7 +36,7 @@ class Api {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: {
-        authorization: this._token,
+        authorization: this._name,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({

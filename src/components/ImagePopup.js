@@ -1,4 +1,5 @@
 import React from "react";
+
 import { SelectedCardContext } from "../contexts/SelectedCardContext";
 
 function ImagePopup(props) {
@@ -22,14 +23,17 @@ function ImagePopup(props) {
     >
       <div className="popup__image-container">
         <button className="popup__close link" type="button"></button>
+
         <img
           className="popup__image"
           src={selectedCard.link}
           alt="Изображение из карточки"
         />
+
         <h3 className="popup__image-text">{selectedCard.name}</h3>
       </div>
     </div>
   );
 }
+
 export default ImagePopup;
