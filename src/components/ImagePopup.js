@@ -26,7 +26,7 @@ function ImagePopup(props) {
         <img
           className="popup__image"
           src={selectedCard.link}
-          alt="Изображение из карточки"
+          alt={`Описание фотографии: ${selectedCard.name}`}
         />
 
         <h3 className="popup__image-text">{selectedCard.name}</h3>

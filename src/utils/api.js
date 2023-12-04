@@ -6,18 +6,20 @@ class Api {
     this._headers = headers;
   }
 
+  _checkResponse(res) {
+    if (res.ok) return res.json();
+    return res.json().then((res) => {
+      throw new Error(res.message);
+    });
+  }
+
   getUserInfo() {
     const url = `${this._baseUrl}/users/me`;
 
     return fetch(url, {
       method: "GET",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) return res.json();
-      return res.json().then((res) => {
-        throw new Error(res.message);
-      });
-    });
+    }).then(this._checkResponse);
   }
 
   setUserInfo({ name, about }) {
@@ -30,12 +32,7 @@ class Api {
         name,
         about,
       }),
-    }).then((res) => {
-      if (res.ok) return res.json();
-      return res.json().then((res) => {
-        throw new Error(res.message);
-      });
-    });
+    }).then(this._checkResponse);
   }
 
   changeAvatar(link) {
@@ -47,12 +44,7 @@ class Api {
       body: JSON.stringify({
         avatar: link,
       }),
-    }).then((res) => {
-      if (res.ok) return res.json();
-      return res.json().then((res) => {
-        throw new Error(res.message);
-      });
-    });
+    }).then(this._checkResponse);
   }
 
   getInitialCards() {
@@ -61,12 +53,7 @@ class Api {
     return fetch(url, {
       method: "GET",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) return res.json();
-      return res.json().then((res) => {
-        throw new Error(res.message);
-      });
-    });
+    }).then(this._checkResponse);
   }
 
   addNewCard({ name, link }) {
@@ -79,12 +66,7 @@ class Api {
         name,
         link,
       }),
-    }).then((res) => {
-      if (res.ok) return res.json();
-      return res.json().then((res) => {
-        throw new Error(res.message);
-      });
-    });
+    }).then(this._checkResponse);
   }
 
   deleteCard(cardId) {
@@ -93,12 +75,7 @@ class Api {
     return fetch(url, {
       method: "DELETE",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) return Promise.resolve();
-      return res.json().then((res) => {
-        throw new Error(res.message);
-      });
-    });
+    }).then(this._checkResponse);
   }
 
   _setLike(cardId) {
@@ -107,12 +84,7 @@ class Api {
     return fetch(url, {
       method: "PUT",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) return res.json();
-      return res.json().then((res) => {
-        throw new Error(res.message);
-      });
-    });
+    }).then(this._checkResponse);
   }
 
   _deleteLike(cardId) {
@@ -121,12 +93,7 @@ class Api {
     return fetch(url, {
       method: "DELETE",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) return res.json();
-      return res.json().then((res) => {
-        throw new Error(res.message);
-      });
-    });
+    }).then(this._checkResponse);
   }
 
   toggleLike(cardId, isLiked) {

@@ -21,7 +21,7 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
       <img
         className="cards__img link"
         src={card.link}
-        alt="Изображение из карточки"
+        alt={`Описание фотографии: ${card.name}`}
         onClick={handleCardClick}
       />
       {isOwn ? (
