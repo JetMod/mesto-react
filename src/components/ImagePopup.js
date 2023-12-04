@@ -1,5 +1,4 @@
 import React from "react";
-
 import { SelectedCardContext } from "../contexts/SelectedCardContext";
 
 function ImagePopup(props) {

@@ -8,9 +8,9 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const handleLikeClick = () => {
     onCardLike(card);
   };
-  const handleDeleteClick = () => {
+  function handleDeleteClick() {
     onCardDelete(card);
-  };
+  }
 
   const currentUser = React.useContext(CurrentUserContext);
   const isOwn = card.owner._id === currentUser._id;

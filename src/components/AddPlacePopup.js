@@ -3,11 +3,11 @@ import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
 function AddPlacePopup(props) {
-  const [title, setTitle] = React.useState("");
+  const [name, setName] = React.useState("");
   const [link, setLink] = React.useState("");
 
   function handleTitleChange(e) {
-    setTitle(e.target.value);
+    setName(e.target.value);
   }
 
   function handleLinkChange(e) {
@@ -18,14 +18,14 @@ function AddPlacePopup(props) {
     e.preventDefault();
 
     props.onAddPlace({
-      title,
+      name,
       link,
     });
   }
   /**инициализация инпутов*/
   useEffect(() => {
     if (!props.isOpen) {
-      setTitle("");
+      setName("");
       setLink("");
     }
   }, [props.isOpen]);
@@ -43,8 +43,8 @@ function AddPlacePopup(props) {
         id="title-input"
         className="popup__input popup__input_type_title"
         type="text"
-        name="title"
-        value={title}
+        name="name"
+        value={name}
         placeholder="Название"
         minLength="2"
         maxLength="30"

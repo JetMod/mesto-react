@@ -13,8 +13,6 @@ function EditAvatarPopup(props) {
     });
   }
 
-  /**инициализация инпутов*/
-
   useEffect(() => {
     avatarLink.current.value = "";
   }, [props.isOpen]);
